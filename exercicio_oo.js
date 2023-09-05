@@ -5,10 +5,9 @@ function Pessoa(nome) {
     }
 }
 
-function Funcionario(nome, cargo, salario) {
+function Analista(nome, cargo, salario) {
     this.cargo = cargo;
     
-    // this.salario = salario;
     let _salario = salario;
 
     this.getSalario = function() {
@@ -22,9 +21,9 @@ function Funcionario(nome, cargo, salario) {
         
     }
 
-    this.aumento = function() {
-        const novoSalario = _salario * 1.1;
-        _salario = novoSalario;
+    this.participacao = function() {
+        const valorParticipacao = _salario * 0.5;
+        _salario = valorParticipacao;
     }
 
     this.dizCargo = function() {
@@ -34,35 +33,44 @@ function Funcionario(nome, cargo, salario) {
     Pessoa.call(this, nome);
 }
 
-function Estagiario(nome) {
-    Funcionario.call(this, nome, "Estagiario", 2000);
+function Coordenador(nome) {
+    Analista.call(this, nome, "Coordenador", 7000);
 
-    this.aumento = function() {
-        const novoSalario = this.getSalario() * 1.07;
-        this.setSalario(novoSalario);
+    this.participacao = function() {
+        const valorParticipacao = this.getSalario() * 1.5;
+        this.setSalario(valorParticipacao);
     }
 }
 
 function Gerente(nome) {
-    Funcionario.call(this, nome, "Gerente", 15000);
+    Analista.call(this, nome, "Gerente", 10000);
 
-    this.aumento = function() {
-        const novoSalario = this.getSalario() * 1.15;
-        this.setSalario(novoSalario);
+    this.participacao = function() {
+        const valorParticipacao = this.getSalario() * 2;
+        this.setSalario(valorParticipacao);
     }
 }
 
-const funcionario1 = new Funcionario("Maria", "Dev front-end", 5000);
-const funcionario2 = new Estagiario("Pedro");
+const funcionario1 = new Analista("Pedro", "Analista", 2500);
+const funcionario2 = new Coordenador("Maria");
 const funcionario3 = new Gerente("Carlos");
 
 
 
-funcionario1.aumento();
+funcionario1.participacao();
 console.log(funcionario1.getSalario());
+console.log(funcionario1.cargo);
+console.log(funcionario1.nome);
 
-funcionario2.aumento();
+
+
+funcionario2.participacao();
 console.log(funcionario2.getSalario());
+console.log(funcionario2.cargo);
+console.log(funcionario2.nome);
 
-funcionario3.aumento();
+
+funcionario3.participacao();
 console.log(funcionario3.getSalario());
+console.log(funcionario3.cargo);
+console.log(funcionario3.nome);
